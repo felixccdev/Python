@@ -16,7 +16,7 @@ def estadisticas_ventas(datos):
     if datos is not None:
         print("Estadísticas de Ventas:")
         print("-----------------------")
-        print(f"Total de ventas: {datos['Cantidad Vendida'].sum():,.2f} Unidades vendidas")
+        print(f"Total de Unidades Vendidas: {datos['Unidades Vendidas'].sum():,.2f} Unidades vendidas")
         print(f"Promedio de precio unitario: {datos['Precio Unitario'].mean():,.2f}$")
         print(f"Producto más vendido: {datos['Producto'].mode().values[0]}")
         print(f"Fecha de la venta más reciente: {datos['Fecha'].max()}")
