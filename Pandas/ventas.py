@@ -16,8 +16,8 @@ def estadisticas_ventas(datos):
     if datos is not None:
         print("Estadísticas de Ventas:")
         print("-----------------------")
-        print(f"Total de Unidades Vendidas: {datos['Unidades Vendidas'].sum():,.2f} Unidades vendidas")
-        print(f"Promedio de precio unitario: {datos['Precio Unitario'].mean():,.2f}$")
+        print(f"Total de ventas: {datos['Cantidad Vendida'].sum():,.2f} Unidades Vendidas")
+        print(f"Promedio de precio unitario: ${datos['Precio Unitario'].mean():,.2f}")
         print(f"Producto más vendido: {datos['Producto'].mode().values[0]}")
         print(f"Fecha de la venta más reciente: {datos['Fecha'].max()}")
         print("-----------------------")
@@ -25,10 +25,10 @@ def estadisticas_ventas(datos):
         print("No hay datos para mostrar estadísticas.")
 
 # Función para agregar una nueva venta
-def agregar_venta(datos, producto, unidades, precio_unitario, fecha):
+def agregar_venta(datos, producto, cantidad, precio_unitario, fecha):
     nueva_venta = pd.DataFrame({
         'Producto': [producto],
-        'Unidades Vendidas': [unidades],
+        'Cantidad Vendida': [cantidad],
         'Precio Unitario': [precio_unitario],
         'Fecha': [fecha]
     })
@@ -48,7 +48,7 @@ def main():
 
     if datos is None:
         # Si no se pueden cargar los datos, se crea un DataFrame vacío
-        datos = pd.DataFrame(columns=['Producto', 'Unidades Vendidas', 'Precio Unitario', 'Fecha'])
+        datos = pd.DataFrame(columns=['Producto', 'Cantidad Vendida', 'Precio Unitario', 'Fecha'])
 
     while True:
         print("\n¡Bienvenido a la Aplicación de Ventas!")
@@ -62,11 +62,11 @@ def main():
             estadisticas_ventas(datos)
         elif opcion == '2':
             producto = input("Ingrese el nombre del producto: ")
-            unidades = int(input("Ingrese las unidades vendida: "))
+            cantidad = float(input("Ingrese la cantidad vendida: "))
             precio_unitario = float(input("Ingrese el precio unitario: "))
             fecha = input("Ingrese la fecha de la venta (YYYY-MM-DD): ")
 
-            datos = agregar_venta(datos, producto, unidades, precio_unitario, fecha)
+            datos = agregar_venta(datos, producto, cantidad, precio_unitario, fecha)
             print("¡Venta agregada exitosamente!")
         elif opcion == '3':
             print("Gracias por usar la aplicación. ¡Hasta luego!")
